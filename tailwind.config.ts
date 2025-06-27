@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,6 +19,9 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'rajdhani': ['Rajdhani', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -61,6 +65,10 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				lime: {
+					400: '#a3e635',
+					500: '#84cc16',
 				}
 			},
 			borderRadius: {
@@ -84,11 +92,55 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(30px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'pulse-glow': {
+					'0%, 100%': {
+						boxShadow: '0 0 20px rgba(132, 204, 22, 0.3)'
+					},
+					'50%': {
+						boxShadow: '0 0 40px rgba(132, 204, 22, 0.6)'
+					}
+				},
+				'float': {
+					'0%, 100%': {
+						transform: 'translateY(0px)'
+					},
+					'50%': {
+						transform: 'translateY(-20px)'
+					}
+				},
+				'particle': {
+					'0%': {
+						transform: 'translate(0, 0) scale(1)',
+						opacity: '1'
+					},
+					'100%': {
+						transform: 'translate(-100px, -100px) scale(0)',
+						opacity: '0'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.8s ease-out',
+				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+				'float': 'float 6s ease-in-out infinite',
+				'particle': 'particle 3s linear infinite'
+			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'gradient-tech': 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%)',
 			}
 		}
 	},
