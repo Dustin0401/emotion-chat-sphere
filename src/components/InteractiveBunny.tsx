@@ -1,14 +1,13 @@
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, Suspense } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
-import './EllipsoidGeometry';
+import { EllipsoidGeometry } from './EllipsoidGeometry';
 
 const BunnyHead = () => {
   const meshRef = useRef<THREE.Group>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isLipSyncing, setIsLipSyncing] = useState(false);
-  const { viewport } = useThree();
 
   // Track mouse movement
   useEffect(() => {
@@ -61,23 +60,23 @@ const BunnyHead = () => {
         <meshStandardMaterial color="#f8f8f8" roughness={0.3} metalness={0.1} />
       </mesh>
       
-      {/* Bunny Ears */}
+      {/* Bunny Ears - Using regular sphereGeometry as fallback */}
       <mesh position={[-0.4, 1.8, -0.2]} rotation={[0, 0, -0.3]}>
-        <ellipsoidGeometry args={[0.3, 1.2, 0.2]} />
+        <sphereGeometry args={[0.3, 16, 16]} />
         <meshStandardMaterial color="#f8f8f8" roughness={0.3} metalness={0.1} />
       </mesh>
       <mesh position={[0.4, 1.8, -0.2]} rotation={[0, 0, 0.3]}>
-        <ellipsoidGeometry args={[0.3, 1.2, 0.2]} />
+        <sphereGeometry args={[0.3, 16, 16]} />
         <meshStandardMaterial color="#f8f8f8" roughness={0.3} metalness={0.1} />
       </mesh>
       
       {/* Inner ears */}
       <mesh position={[-0.4, 1.6, 0]}>
-        <ellipsoidGeometry args={[0.15, 0.8, 0.1]} />
+        <sphereGeometry args={[0.15, 16, 16]} />
         <meshStandardMaterial color="#ffb3d9" roughness={0.4} />
       </mesh>
       <mesh position={[0.4, 1.6, 0]}>
-        <ellipsoidGeometry args={[0.15, 0.8, 0.1]} />
+        <sphereGeometry args={[0.15, 16, 16]} />
         <meshStandardMaterial color="#ffb3d9" roughness={0.4} />
       </mesh>
       
@@ -109,7 +108,7 @@ const BunnyHead = () => {
       
       {/* Mouth - animated for lip sync */}
       <mesh position={[0, -0.2, 0.95]} scale={[1, isLipSyncing ? 1.5 : 1, 1]}>
-        <ellipsoidGeometry args={[0.2, 0.1, 0.05]} />
+        <sphereGeometry args={[0.1, 16, 8]} />
         <meshStandardMaterial color="#000000" />
       </mesh>
       
@@ -126,15 +125,28 @@ const BunnyHead = () => {
   );
 };
 
+const FallbackBunny = () => (
+  <div className="w-80 h-80 flex items-center justify-center">
+    <div className="text-6xl animate-bounce">🐰</div>
+  </div>
+);
+
 const InteractiveBunny = () => {
   return (
     <div className="w-80 h-80">
-      <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
-        <ambientLight intensity={0.6} />
-        <directionalLight position={[10, 10, 5]} intensity={1} />
-        <pointLight position={[-10, -10, -5]} intensity={0.5} color="#84cc16" />
-        <BunnyHead />
-      </Canvas>
+      <Suspense fallback={<FallbackBunny />}>
+        <Canvas 
+          camera={{ position: [0, 0, 5], fov: 50 }}
+          onError={(error) => {
+            console.error('Canvas error:', error);
+          }}
+        >
+          <ambientLight intensity={0.6} />
+          <directionalLight position={[10, 10, 5]} intensity={1} />
+          <pointLight position={[-10, -10, -5]} intensity={0.5} color="#84cc16" />
+          <BunnyHead />
+        </Canvas>
+      </Suspense>
     </div>
   );
 };

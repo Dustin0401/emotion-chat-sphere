@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import InteractiveBunny from './InteractiveBunny';
+import ErrorBoundary from './ErrorBoundary';
 
 const HeroSection = () => {
   const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; delay: number }>>([]);
@@ -34,16 +35,22 @@ const HeroSection = () => {
 
       {/* Hero Content */}
       <div className="relative z-10 text-center max-w-4xl mx-auto px-6 animate-fade-in">
-        {/* BIONIC Title - Made smaller */}
+        {/* BIONIC Title */}
         <h1 className="text-6xl md:text-7xl font-bold mb-8 tracking-tight">
           <span className="bg-gradient-to-r from-white via-lime-100 to-lime-400 bg-clip-text text-transparent">
             BIONIC
           </span>
         </h1>
         
-        {/* Interactive 3D Bunny */}
+        {/* Interactive 3D Bunny with Error Boundary */}
         <div className="flex items-center justify-center mb-8">
-          <InteractiveBunny />
+          <ErrorBoundary fallback={
+            <div className="w-80 h-80 flex items-center justify-center">
+              <div className="text-8xl animate-bounce">🐰</div>
+            </div>
+          }>
+            <InteractiveBunny />
+          </ErrorBoundary>
         </div>
 
         {/* Tagline and Subheading */}

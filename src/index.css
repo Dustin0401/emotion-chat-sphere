@@ -62,6 +62,34 @@
   }
 }
 
+@layer utilities {
+  .bg-gradient-tech {
+    background: linear-gradient(135deg, 
+      #0a0a0a 0%, 
+      #1a1a1a 25%, 
+      #0f1419 50%, 
+      #1a1a1a 75%, 
+      #0a0a0a 100%
+    );
+  }
+  
+  .font-space-grotesk {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  
+  .font-jetbrains-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+  
+  .animate-slide-in-left {
+    animation: slideInLeft 0.6s ease-out;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out;
+  }
+}
+
 @layer components {
   .particle {
     position: absolute;
@@ -87,5 +115,46 @@
   @keyframes waveform {
     0%, 100% { background-position: 0 0; }
     50% { background-position: 100px 0; }
+  }
+  
+  @keyframes particle {
+    0% { 
+      opacity: 0; 
+      transform: translateY(0px) scale(0); 
+    }
+    10% { 
+      opacity: 1; 
+      transform: translateY(-10px) scale(1); 
+    }
+    90% { 
+      opacity: 1; 
+      transform: translateY(-90px) scale(1); 
+    }
+    100% { 
+      opacity: 0; 
+      transform: translateY(-100px) scale(0); 
+    }
+  }
+  
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
