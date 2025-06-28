@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
+import InteractiveBunny from './InteractiveBunny';
 
 const HeroSection = () => {
   const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; delay: number }>>([]);
@@ -33,26 +34,16 @@ const HeroSection = () => {
 
       {/* Hero Content */}
       <div className="relative z-10 text-center max-w-4xl mx-auto px-6 animate-fade-in">
-        {/* BIONIC Title */}
-        <h1 className="text-8xl md:text-9xl font-bold mb-8 tracking-tight">
+        {/* BIONIC Title - Made smaller */}
+        <h1 className="text-6xl md:text-7xl font-bold mb-8 tracking-tight">
           <span className="bg-gradient-to-r from-white via-lime-100 to-lime-400 bg-clip-text text-transparent">
             BIONIC
           </span>
         </h1>
         
-        {/* 3D Sphere Visualization */}
+        {/* Interactive 3D Bunny */}
         <div className="flex items-center justify-center mb-8">
-          <div className="relative">
-            <div className="w-80 h-80 rounded-full bg-gradient-radial from-lime-500/20 via-lime-500/10 to-transparent animate-pulse-glow" />
-            <div className="absolute inset-6 rounded-full bg-gradient-radial from-lime-400/30 via-lime-400/10 to-transparent animate-float" />
-            <div className="absolute inset-12 rounded-full bg-gradient-radial from-lime-300/40 via-lime-300/20 to-transparent animate-pulse-glow" 
-                 style={{ animationDelay: '1s' }} />
-            
-            {/* Central core */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <div className="w-16 h-16 rounded-full bg-lime-500 animate-pulse-glow shadow-2xl shadow-lime-500/50" />
-            </div>
-          </div>
+          <InteractiveBunny />
         </div>
 
         {/* Tagline and Subheading */}

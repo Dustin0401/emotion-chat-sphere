@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import HeroSection from '../components/HeroSection';
 import ChatFeatures from '../components/ChatFeatures';
 import ChatQualityVisual from '../components/ChatQualityVisual';
-import ChattersReviews from '../components/ChattersReviews';
 import TechSpecs from '../components/TechSpecs';
 import PricingSection from '../components/PricingSection';
 import IntegrationsSection from '../components/IntegrationsSection';
@@ -28,7 +27,6 @@ const Index = () => {
         return (
           <div className="animate-slide-in-left">
             <ChatQualityVisual />
-            <ChattersReviews />
             <TechSpecs />
           </div>
         );
