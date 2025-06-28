@@ -24,14 +24,5 @@ class EllipsoidGeometry extends THREE.SphereGeometry {
 
 extend({ EllipsoidGeometry });
 
-// TypeScript declaration for JSX
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      ellipsoidGeometry: THREE.Object3DNode<EllipsoidGeometry, typeof EllipsoidGeometry>;
-    }
-  }
-}
-
 export { EllipsoidGeometry };
 export default EllipsoidGeometry;
