@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Shield, Lock, Eye, Server, Award, CheckCircle } from 'lucide-react';
+import { Shield, Lock, Eye, Server } from 'lucide-react';
 
 const SecuritySection = () => {
   const securityFeatures = [
@@ -26,15 +26,6 @@ const SecuritySection = () => {
     }
   ];
 
-  const certifications = [
-    { name: 'SOC 2 Type II', status: 'Certified' },
-    { name: 'ISO 27001', status: 'Certified' },
-    { name: 'GDPR Compliant', status: 'Verified' },
-    { name: 'HIPAA Ready', status: 'Available' },
-    { name: 'PCI DSS', status: 'Compliant' },
-    { name: 'Privacy Shield', status: 'Certified' }
-  ];
-
   return (
     <section className="py-24 px-6">
       <div className="max-w-7xl mx-auto">
@@ -47,7 +38,7 @@ const SecuritySection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {securityFeatures.map((feature, index) => {
             const Icon = feature.icon;
             return (
@@ -68,38 +59,7 @@ const SecuritySection = () => {
           })}
         </div>
 
-        <div className="bg-card/30 backdrop-blur-sm rounded-2xl border border-lime-500/20 p-8 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-          <div className="text-center mb-8">
-            <Award className="w-16 h-16 text-lime-400 mx-auto mb-4" />
-            <h3 className="text-2xl font-bold text-white mb-2 font-space-grotesk">
-              Trust & Compliance
-            </h3>
-            <p className="text-gray-400 font-space-grotesk">
-              Certified and compliant with global security standards
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {certifications.map((cert, index) => (
-              <div
-                key={cert.name}
-                className="flex items-center space-x-3 p-4 bg-lime-500/5 rounded-xl border border-lime-500/20"
-              >
-                <CheckCircle className="w-5 h-5 text-lime-400 flex-shrink-0" />
-                <div>
-                  <div className="text-white font-medium font-space-grotesk">
-                    {cert.name}
-                  </div>
-                  <div className="text-lime-400 text-sm font-jetbrains-mono">
-                    {cert.status}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="text-center mt-12 animate-fade-in" style={{ animationDelay: '0.6s' }}>
+        <div className="text-center mt-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
           <p className="text-gray-400 font-space-grotesk">
             Have security questions? <span className="text-lime-400 hover:text-lime-300 cursor-pointer">Contact our security team</span> for a detailed security review.
           </p>

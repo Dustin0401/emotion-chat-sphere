@@ -21,9 +21,9 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
   onSectionChange,
 }) => {
   return (
-    <div className="fixed left-6 top-1/2 transform -translate-y-1/2 z-50">
-      <div className="bg-black/20 backdrop-blur-xl border border-lime-500/20 rounded-2xl p-4 shadow-2xl">
-        <div className="flex flex-col space-y-4">
+    <div className="fixed left-4 top-1/2 transform -translate-y-1/2 z-50">
+      <div className="bg-black/10 backdrop-blur-3xl border border-lime-500/30 rounded-3xl p-3 shadow-2xl backdrop-saturate-150">
+        <div className="flex flex-col space-y-2">
           {navigationItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeSection === item.id;
@@ -33,20 +33,20 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
                 key={item.id}
                 onClick={() => onSectionChange(item.id)}
                 className={`
-                  group relative flex items-center space-x-3 px-4 py-3 rounded-xl
+                  group relative flex items-center justify-center w-10 h-10 rounded-xl
                   transition-all duration-300 font-space-grotesk font-medium
                   ${isActive 
-                    ? 'bg-lime-500/20 text-lime-400 border border-lime-500/30' 
-                    : 'text-gray-400 hover:text-lime-400 hover:bg-lime-500/10'
+                    ? 'bg-lime-500/30 text-lime-300 border border-lime-400/50 shadow-lg shadow-lime-500/20' 
+                    : 'text-gray-400 hover:text-lime-400 hover:bg-lime-500/10 hover:border hover:border-lime-500/20'
                   }
                 `}
+                title={item.label}
               >
-                <Icon className="w-5 h-5" />
-                <span className="text-sm whitespace-nowrap">{item.label}</span>
+                <Icon className="w-4 h-4" />
                 
                 {/* Active indicator */}
                 {isActive && (
-                  <div className="absolute -right-2 top-1/2 transform -translate-y-1/2 w-1 h-8 bg-lime-500 rounded-full" />
+                  <div className="absolute -right-1 top-1/2 transform -translate-y-1/2 w-0.5 h-6 bg-lime-400 rounded-full" />
                 )}
               </button>
             );

@@ -1,8 +1,9 @@
 
-import React from 'react';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import React, { useEffect, useRef } from 'react';
 
 const IntegrationsSection = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
   const partners = [
     { name: 'Slack', logo: '🟪', description: 'Team Communication' },
     { name: 'Microsoft Teams', logo: '🟦', description: 'Enterprise Chat' },
@@ -16,6 +17,36 @@ const IntegrationsSection = () => {
     { name: 'Zapier', logo: '🟡', description: 'Automation' },
   ];
 
+  // Duplicate partners for seamless loop
+  const duplicatedPartners = [...partners, ...partners];
+
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    let animationId: number;
+    let scrollPosition = 0;
+
+    const scroll = () => {
+      scrollPosition += 0.5; // Adjust speed here
+      
+      if (scrollPosition >= scrollContainer.scrollWidth / 2) {
+        scrollPosition = 0;
+      }
+      
+      scrollContainer.scrollLeft = scrollPosition;
+      animationId = requestAnimationFrame(scroll);
+    };
+
+    animationId = requestAnimationFrame(scroll);
+
+    return () => {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+    };
+  }, []);
+
   return (
     <section className="py-24 px-6">
       <div className="max-w-7xl mx-auto">
@@ -28,35 +59,27 @@ const IntegrationsSection = () => {
           </p>
         </div>
 
-        <div className="relative max-w-6xl mx-auto">
-          <Carousel 
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
+        <div className="relative overflow-hidden">
+          <div
+            ref={scrollRef}
+            className="flex space-x-6 overflow-hidden"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {partners.map((partner, index) => (
-                <CarouselItem key={partner.name} className="pl-2 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div 
-                    className="bg-card/30 backdrop-blur-sm rounded-2xl border border-lime-500/20 p-6 text-center hover:border-lime-500/40 transition-all duration-300 hover:scale-105"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    <div className="text-4xl mb-4">{partner.logo}</div>
-                    <h3 className="text-lg font-bold text-white mb-2 font-space-grotesk">
-                      {partner.name}
-                    </h3>
-                    <p className="text-sm text-gray-400 font-space-grotesk">
-                      {partner.description}
-                    </p>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="left-4 bg-lime-500/20 border-lime-500/30 text-lime-400 hover:bg-lime-500/30" />
-            <CarouselNext className="right-4 bg-lime-500/20 border-lime-500/30 text-lime-400 hover:bg-lime-500/30" />
-          </Carousel>
+            {duplicatedPartners.map((partner, index) => (
+              <div
+                key={`${partner.name}-${index}`}
+                className="flex-shrink-0 bg-card/30 backdrop-blur-sm rounded-2xl border border-lime-500/20 p-6 text-center hover:border-lime-500/40 transition-all duration-300 w-48"
+              >
+                <div className="text-4xl mb-4">{partner.logo}</div>
+                <h3 className="text-lg font-bold text-white mb-2 font-space-grotesk">
+                  {partner.name}
+                </h3>
+                <p className="text-sm text-gray-400 font-space-grotesk">
+                  {partner.description}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="text-center mt-16">

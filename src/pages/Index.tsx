@@ -9,7 +9,6 @@ import PricingSection from '../components/PricingSection';
 import IntegrationsSection from '../components/IntegrationsSection';
 import SecuritySection from '../components/SecuritySection';
 import StickyCTA from '../components/StickyCTA';
-import Footer from '../components/Footer';
 import NavigationSidebar from '../components/NavigationSidebar';
 
 const Index = () => {
@@ -66,13 +65,8 @@ const Index = () => {
       <div className="relative">
         {renderSection()}
         
-        {/* Show CTA and Footer only on hero section */}
-        {activeSection === 'hero' && (
-          <>
-            <StickyCTA />
-            <Footer />
-          </>
-        )}
+        {/* Show CTA only on hero section */}
+        {activeSection === 'hero' && <StickyCTA />}
       </div>
     </div>
   );
