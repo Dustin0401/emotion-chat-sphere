@@ -2,7 +2,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
-import '../components/EllipsoidGeometry';
+import './EllipsoidGeometry';
 
 const BunnyHead = () => {
   const meshRef = useRef<THREE.Group>(null);
