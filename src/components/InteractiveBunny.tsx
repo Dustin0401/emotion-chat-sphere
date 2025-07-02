@@ -34,19 +34,34 @@ const InteractiveBunny = () => {
   return (
     <div className="flex flex-col items-center space-y-6">
       {/* 3D Model */}
-      <div className="w-80 h-80 bg-transparent">
+      <div className="w-80 h-80 relative overflow-hidden spline-container">
         <Suspense fallback={<FallbackBunny />}>
           <Spline
             scene="https://prod.spline.design/MOC9XDpyPUXlayf1/scene.splinecode"
             style={{ 
               background: 'transparent',
               width: '100%',
-              height: '100%'
+              height: '100%',
+              pointerEvents: 'none'
             }}
-            onLoad={(spline) => {
-              // Disable mouse interactions to prevent unwanted rotations
-              if (spline && spline.setVariable) {
-                spline.setVariable('mouseInteraction', false);
+            onLoad={(spline: any) => {
+              // More comprehensive approach to disable interactions
+              if (spline) {
+                // Disable mouse controls
+                spline.setVariable?.('Mouse X', 0);
+                spline.setVariable?.('Mouse Y', 0);
+                
+                // Try to access and modify the canvas directly
+                const canvas = spline.canvas;
+                if (canvas) {
+                  canvas.style.background = 'transparent';
+                  canvas.style.pointerEvents = 'none';
+                }
+                
+                // Disable orbit controls if they exist
+                if (spline.controls) {
+                  spline.controls.enabled = false;
+                }
               }
             }}
           />

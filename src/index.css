@@ -157,4 +157,15 @@
       transform: translateY(0);
     }
   }
+  }
+  
+  /* Spline container styles to remove white background */
+  .spline-container canvas {
+    background: transparent !important;
+    pointer-events: none !important;
+  }
+  
+  .spline-container {
+    background: transparent !important;
+  }
 }
