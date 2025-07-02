@@ -73,48 +73,51 @@ const AIImageGenerator = () => {
   };
 
   return (
-    <section className="py-24 px-6 relative">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">
-            AI Image Generator
-          </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Transform your ideas into stunning visuals with our advanced AI image generation technology
-          </p>
-        </div>
-
+    <section className="py-24 px-6 relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-lime-500/5 via-transparent to-cyan-500/5" />
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-lime-500/10 rounded-full blur-3xl opacity-30" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl opacity-30" />
+      
+      <div className="max-w-7xl mx-auto relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Input Section */}
           <div className="space-y-6 animate-fade-in">
-            <Card className="bg-card/50 backdrop-blur-sm border-lime-500/20">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-white">
-                  <Wand2 className="w-5 h-5 text-lime-400" />
+            <Card className="bg-card/60 backdrop-blur-md border border-lime-500/30 shadow-2xl shadow-lime-500/10 hover:shadow-lime-500/20 transition-all duration-500">
+              <CardHeader className="pb-4">
+                <CardTitle className="flex items-center gap-3 text-white text-xl">
+                  <div className="w-10 h-10 bg-gradient-to-br from-lime-400 to-lime-600 rounded-xl flex items-center justify-center">
+                    <Wand2 className="w-5 h-5 text-black" />
+                  </div>
                   Create Your Vision
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <Textarea
-                  placeholder="Describe the image you want to create... (e.g., 'A futuristic city at sunset with flying cars')"
-                  value={prompt}
-                  onChange={(e) => setPrompt(e.target.value)}
-                  className="min-h-32 bg-muted border-lime-500/20 text-white placeholder-gray-400 resize-none"
-                />
+              <CardContent className="space-y-6">
+                <div className="relative">
+                  <Textarea
+                    placeholder="Describe the image you want to create... (e.g., 'A futuristic city at sunset with flying cars')"
+                    value={prompt}
+                    onChange={(e) => setPrompt(e.target.value)}
+                    className="min-h-40 bg-muted/80 backdrop-blur-sm border-lime-500/30 text-white placeholder-gray-400 resize-none focus:border-lime-400 transition-colors rounded-xl"
+                  />
+                  <div className="absolute top-4 right-4 text-xs text-gray-500">
+                    {prompt.length}/500
+                  </div>
+                </div>
                 
                 <Button
                   onClick={handleGenerate}
                   disabled={!prompt.trim() || isGenerating}
-                  className="w-full bg-lime-500 hover:bg-lime-600 text-black font-semibold"
+                  className="w-full h-14 bg-gradient-to-r from-lime-500 to-lime-600 hover:from-lime-600 hover:to-lime-700 text-black font-bold text-lg rounded-xl shadow-lg shadow-lime-500/25 hover:shadow-lime-500/40 transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:transform-none"
                 >
                   {isGenerating ? (
                     <>
-                      <Sparkles className="w-4 h-4 mr-2 animate-spin" />
-                      Generating...
+                      <Sparkles className="w-5 h-5 mr-3 animate-spin" />
+                      Generating Magic...
                     </>
                   ) : (
                     <>
-                      <Palette className="w-4 h-4 mr-2" />
+                      <Palette className="w-5 h-5 mr-3" />
                       Generate Image
                     </>
                   )}
@@ -122,55 +125,69 @@ const AIImageGenerator = () => {
               </CardContent>
             </Card>
 
-            {/* Features */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-card/30 backdrop-blur-sm rounded-lg p-4 border border-lime-500/10">
-                <div className="w-8 h-8 bg-lime-500/10 rounded-lg flex items-center justify-center mb-2">
-                  <Sparkles className="w-4 h-4 text-lime-400" />
+            {/* Enhanced Features Grid */}
+            <div className="grid grid-cols-2 gap-6">
+              <div className="group bg-gradient-to-br from-card/40 to-card/20 backdrop-blur-md rounded-2xl p-6 border border-lime-500/20 hover:border-lime-500/40 transition-all duration-300 transform hover:scale-105">
+                <div className="w-12 h-12 bg-gradient-to-br from-lime-500/20 to-lime-600/30 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <Sparkles className="w-6 h-6 text-lime-400" />
                 </div>
-                <h4 className="font-semibold text-white mb-1">High Quality</h4>
-                <p className="text-sm text-gray-400">Professional-grade image generation</p>
+                <h4 className="font-bold text-white mb-2 text-lg">High Quality</h4>
+                <p className="text-sm text-gray-400 leading-relaxed">Professional-grade image generation with stunning detail</p>
               </div>
               
-              <div className="bg-card/30 backdrop-blur-sm rounded-lg p-4 border border-lime-500/10">
-                <div className="w-8 h-8 bg-lime-500/10 rounded-lg flex items-center justify-center mb-2">
-                  <Download className="w-4 h-4 text-lime-400" />
+              <div className="group bg-gradient-to-br from-card/40 to-card/20 backdrop-blur-md rounded-2xl p-6 border border-lime-500/20 hover:border-lime-500/40 transition-all duration-300 transform hover:scale-105">
+                <div className="w-12 h-12 bg-gradient-to-br from-cyan-500/20 to-cyan-600/30 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <Download className="w-6 h-6 text-cyan-400" />
                 </div>
-                <h4 className="font-semibold text-white mb-1">Instant Download</h4>
-                <p className="text-sm text-gray-400">Save your creations immediately</p>
+                <h4 className="font-bold text-white mb-2 text-lg">Instant Download</h4>
+                <p className="text-sm text-gray-400 leading-relaxed">Save your creations in high resolution immediately</p>
               </div>
             </div>
           </div>
 
-          {/* Canvas Section */}
+          {/* Enhanced Canvas Section */}
           <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            <Card className="bg-card/50 backdrop-blur-sm border-lime-500/20">
-              <CardHeader>
-                <CardTitle className="text-white">Preview Canvas</CardTitle>
+            <Card className="bg-card/60 backdrop-blur-md border border-lime-500/30 shadow-2xl shadow-lime-500/10 hover:shadow-lime-500/20 transition-all duration-500 overflow-hidden">
+              <CardHeader className="pb-4">
+                <CardTitle className="flex items-center gap-3 text-white text-xl">
+                  <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-xl flex items-center justify-center">
+                    <Palette className="w-5 h-5 text-black" />
+                  </div>
+                  Preview Canvas
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="relative">
+                <div className="relative rounded-2xl overflow-hidden">
                   <canvas
                     ref={canvasRef}
                     width={512}
                     height={512}
-                    className="w-full h-auto rounded-lg border border-lime-500/20 bg-muted"
+                    className="w-full h-auto rounded-2xl border-2 border-lime-500/30 bg-gradient-to-br from-muted to-muted/50 shadow-inner"
                   />
                   
                   {!generatedImage && !isGenerating && (
-                    <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-muted/50">
+                    <div className="absolute inset-0 flex items-center justify-center rounded-2xl bg-gradient-to-br from-muted/80 to-muted/60 backdrop-blur-sm">
                       <div className="text-center">
-                        <Palette className="w-12 h-12 text-gray-400 mx-auto mb-2" />
-                        <p className="text-gray-400">Your generated image will appear here</p>
+                        <div className="w-20 h-20 bg-gradient-to-br from-lime-500/20 to-cyan-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                          <Palette className="w-10 h-10 text-gray-400" />
+                        </div>
+                        <p className="text-gray-400 text-lg font-medium">Your AI masterpiece</p>
+                        <p className="text-gray-500 text-sm mt-1">will appear here</p>
                       </div>
                     </div>
                   )}
                   
                   {isGenerating && (
-                    <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-black/50 backdrop-blur-sm">
+                    <div className="absolute inset-0 flex items-center justify-center rounded-2xl bg-black/80 backdrop-blur-md">
                       <div className="text-center">
-                        <Sparkles className="w-8 h-8 text-lime-400 mx-auto mb-2 animate-spin" />
-                        <p className="text-white">Generating your image...</p>
+                        <div className="relative">
+                          <div className="w-16 h-16 bg-gradient-to-br from-lime-400 to-cyan-400 rounded-2xl flex items-center justify-center mx-auto mb-4 animate-pulse">
+                            <Sparkles className="w-8 h-8 text-black animate-spin" />
+                          </div>
+                          <div className="absolute inset-0 w-16 h-16 bg-lime-400/20 rounded-2xl mx-auto animate-ping" />
+                        </div>
+                        <p className="text-white text-lg font-semibold">Creating your vision...</p>
+                        <p className="text-gray-400 text-sm mt-1">This may take a moment</p>
                       </div>
                     </div>
                   )}
@@ -179,10 +196,10 @@ const AIImageGenerator = () => {
                 {generatedImage && (
                   <Button
                     onClick={handleDownload}
-                    className="w-full mt-4 bg-primary hover:bg-primary/90"
+                    className="w-full mt-6 h-12 bg-gradient-to-r from-primary to-lime-600 hover:from-primary/90 hover:to-lime-700 text-black font-bold rounded-xl shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 transform hover:scale-[1.02]"
                   >
-                    <Download className="w-4 h-4 mr-2" />
-                    Download Image
+                    <Download className="w-5 h-5 mr-3" />
+                    Download Your Creation
                   </Button>
                 )}
               </CardContent>
