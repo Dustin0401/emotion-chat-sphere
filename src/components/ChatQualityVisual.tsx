@@ -37,15 +37,6 @@ const ChatQualityVisual = () => {
   return (
     <section className="py-24 px-6 bg-gradient-to-b from-black to-gray-900/50">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white font-space-grotesk">
-            Quality Metrics
-          </h2>
-          <p className="text-xl text-gray-400 font-space-grotesk max-w-3xl mx-auto">
-            Experience unparalleled emotional connection through our advanced AI technology
-          </p>
-        </div>
-
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {qualityMetrics.map((metric, index) => {
             const Icon = metric.icon;

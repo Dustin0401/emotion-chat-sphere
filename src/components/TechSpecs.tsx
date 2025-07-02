@@ -16,15 +16,6 @@ const TechSpecs = () => {
   return (
     <section className="py-24 px-6">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">
-            Tech Specifications
-          </h2>
-          <p className="text-xl text-gray-400">
-            Cutting-edge technology powering your conversations
-          </p>
-        </div>
-
         <div className="bg-card/30 backdrop-blur-sm rounded-2xl border border-lime-500/20 overflow-hidden animate-fade-in">
           <div className="divide-y divide-lime-500/20">
             {specs.map((spec, index) => (
