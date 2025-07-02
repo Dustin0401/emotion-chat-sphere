@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import HeroSection from '../components/HeroSection';
-import ChatFeatures from '../components/ChatFeatures';
+import AIImageGenerator from '../components/AIImageGenerator';
 import ChatQualityVisual from '../components/ChatQualityVisual';
 import TechSpecs from '../components/TechSpecs';
 import PricingSection from '../components/PricingSection';
@@ -20,7 +20,7 @@ const Index = () => {
       case 'features':
         return (
           <div className="animate-slide-in-left">
-            <ChatFeatures />
+            <AIImageGenerator />
           </div>
         );
       case 'quality':
