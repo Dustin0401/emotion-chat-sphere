@@ -34,10 +34,21 @@ const InteractiveBunny = () => {
   return (
     <div className="flex flex-col items-center space-y-6">
       {/* 3D Model */}
-      <div className="w-80 h-80">
+      <div className="w-80 h-80 bg-transparent">
         <Suspense fallback={<FallbackBunny />}>
           <Spline
-            scene="https://prod.spline.design/MOC9XDpyPUXlayf1/scene.splinecode" 
+            scene="https://prod.spline.design/MOC9XDpyPUXlayf1/scene.splinecode"
+            style={{ 
+              background: 'transparent',
+              width: '100%',
+              height: '100%'
+            }}
+            onLoad={(spline) => {
+              // Disable mouse interactions to prevent unwanted rotations
+              if (spline && spline.setVariable) {
+                spline.setVariable('mouseInteraction', false);
+              }
+            }}
           />
         </Suspense>
       </div>
