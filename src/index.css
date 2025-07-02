@@ -157,7 +157,6 @@
       transform: translateY(0);
     }
   }
-  }
   
   /* Spline container styles to remove white background */
   .spline-container canvas {
